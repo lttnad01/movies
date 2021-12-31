@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<!--Recently Added-->>
+<section id="iq-favorites">
+	<div class="container-fluid">
+	  <div class="row">
+		<div class="col-sm-12 overflow-hidden">
+		  <div class="iq-main-header d-flex align-items-center justify-content-between">
+			<h4 class="main-title">Recently Added</h4>
+			{% comment %} <a href="#" class="iq-view-all">View All</a> {% endcomment %}
+		  </div>
+		  <div class="favorite-contens">
+			
+			 <ul class="favorites-slider list-inline row p-0 mb-0">
+			{% for movie in recently_added %} 	
+			 <li class="slide-item">
+				    <div id="videosList">           
+
+					  <div class="video">
+						<video width="270px" height="240px" class="thevideo" loop preload>
+						  <source src="{{movie.banner.url}}" >
+						 
+						</video>
+					  </div>
+					  
+					</div>
+				
+                    <div class="block-description">
+                      <h6 class="iq-title">
+                        <a href="#"> {{movie.title}} </a>
+                      </h6>
+                      <div class="movie-time d-flex align-items-center my-2">
+                        <div class="badge badge-secondary p-1 mr-2">10+</div>
+                        <span class="text-white">{{movie.views_count}} views</span>
+                      </div>
+                      <div class="hover-buttons">
+                        <span class="btn btn-hover iq-button">
+                          <i class="fa fa-play mr-1"></i>
+                             <a href="{% url 'movies:movie_detail' movie.slug %}">Play Now</a>
+                        </span>
+                      </div>
+                    </div>
+				
+			 </li>
+			{% endfor %}
+			 </ul>
+		    	
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+
+<!--Most Watched slide-->
+<section id="iq-favorites">
+	<div class="container-fluid">
+	  <div class="row">
+		<div class="col-sm-12 overflow-hidden">
+		  <div class="iq-main-header d-flex align-items-center justify-content-between">
+			<h4 class="main-title">Most Watched</h4>
+			{% comment %} <a href="#" class="iq-view-all">View All</a> {% endcomment %}
+		  </div>
+		  <div class="favorite-contens">
+			
+			 <ul class="favorites-slider list-inline row p-0 mb-0">
+			{% for movie in most_watched %} 	
+			 <li class="slide-item">
+				    <div id="videosList">           
+
+					  <div class="video">
+						<video width="270px" height="240px" class="thevideo" loop preload>
+						  <source src="{{movie.banner.url}}" >
+						 
+						</video>
+					  </div>
+					  
+					</div>
+				
+                    <div class="block-description">
+                      <h6 class="iq-title">
+                        <a href="#"> {{movie.title}} </a>
+                      </h6>
+                      <div class="movie-time d-flex align-items-center my-2">
+                        <div class="badge badge-secondary p-1 mr-2">10+</div>
+                        <span class="text-white">{{movie.views_count}} views</span>
+                      </div>
+                      <div class="hover-buttons">
+                        <span class="btn btn-hover iq-button">
+                          <i class="fa fa-play mr-1"></i>
+                             <a href="{% url 'movies:movie_detail' movie.slug %}">Play Now</a>
+                        </span>
+                      </div>
+                    </div>
+				
+			 </li>
+			{% endfor %}
+			 </ul>
+		    	
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+
+
+<!--Top rated slide-->
+<section id="iq-favorites">
+	<div class="container-fluid">
+	  <div class="row">
+		<div class="col-sm-12 overflow-hidden">
+		  <div class="iq-main-header d-flex align-items-center justify-content-between">
+			<h4 class="main-title">Top rated</h4>
+			{% comment %} <a href="#" class="iq-view-all">View All</a> {% endcomment %}
+		  </div>
+		  <div class="favorite-contens">
+			
+			 <ul class="favorites-slider list-inline row p-0 mb-0">
+			{% for movie in top_rated %} 	
+			 <li class="slide-item">
+				    <div id="videosList">           
+
+					  <div class="video">
+						<video width="270px" height="240px" class="thevideo" loop preload>
+						  <source src="{{movie.banner.url}}" >
+						 
+						</video>
+					  </div>
+					  
+					</div>
+				
+                    <div class="block-description">
+                      <h6 class="iq-title">
+                        <a href="#"> {{movie.title}} </a>
+                      </h6>
+                      <div class="movie-time d-flex align-items-center my-2">
+                        <div class="badge badge-secondary p-1 mr-2">10+</div>
+                        <span class="text-white">{{movie.views_count}} views</span>
+                      </div>
+                      <div class="hover-buttons">
+                        <span class="btn btn-hover iq-button">
+                          <i class="fa fa-play mr-1"></i>
+                             <a href="{% url 'movies:movie_detail' movie.slug %}">Play Now</a>
+                        </span>
+                      </div>
+                    </div>
+				
+			 </li>
+			{% endfor %}
+			 </ul>
+		    	
+		  </div>
+		</div>
+	  </div>
+	</div>
+</section>
+
+
+
+{% endblock body %}
+		 
+
+
+
+
+             

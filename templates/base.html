@@ -1,0 +1,295 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Movies</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+	<!-- Link CSS -->
+	
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    
+
+	<link rel="stylesheet" href="{% static 'css/slick.css' %}">
+	<link rel="stylesheet" href="{% static 'css/slick-theme.css' %}" >
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/animate.min.css' %}" >
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'css/select2.min.css' %}" >
+	<link rel="stylesheet" href="{% static 'css/select2-bootstrap4.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/slick-animation.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'swiper.css' %}">
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+
+</head>
+
+<body>
+    
+		<header id="main-header">
+			<div class="main-header">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-12">
+						  <nav class="navbar navbar-expand-lg navbar-light p-0">
+							<a href="#" class="navbar-toggler c-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
+							  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							  <div class="navbar-toggler-icon" data-toggle="collapse">
+								<span class="navbar-menu-icon navbar-menu-icon--top"></span>
+								<span class="navbar-menu-icon navbar-menu-icon--middle"></span>
+								<span class="navbar-menu-icon navbar-menu-icon--bottom"></span>
+							  </div>
+							</a>
+							<a href="index.html" class="navbar-brand">
+								<img src="images/logo.png" class="img-fluid logo" alt="" />
+							  </a>
+							  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+								<div class="menu-main-menu-container">
+								  <ul id="top-menu" class="navbar-nav ml-auto">
+									<li class="menu-item"><a href="{% url 'movie:homepage'%}">Home</a></li>
+									<li class="menu-item">
+										<a href="#">Genres</a>
+										<ul class="sub-menu">
+										  <li class="menu-item"><a href="{% url 'movies:movie_category' 'action' %}">Action</a></li>
+										  <li class="menu-item"><a href="{% url 'movies:movie_category' 'comedy' %}">Comedy</a></li>
+										  <li class="menu-item"><a href="{% url 'movies:movie_category' 'drama' %}">Drama</a></li>
+										  <li class="menu-item"><a href="{% url 'movies:movie_category' 'romance' %}">Romance</a></li>
+										</ul>
+									</li>	
+									<li class="menu-item">
+										<a href="#">Year</a>
+										<ul class="sub-menu">
+										  <li class="menu-item"><a href="{% url 'movies:movie_year' year=2019 %}">2019</a></li>
+										  <li class="menu-item"><a href="{% url 'movies:movie_year' year=2018 %}">2018</a></li>
+										  <li class="menu-item"><a href="{% url 'movies:movie_year' year=2017 %}">2017</a></li>
+										  <li class="menu-item"><a href="{% url 'movies:movie_year' year=2016 %}">2016</a></li>
+										</ul>
+									</li>	
+									<li class="menu-item">
+										<a href="#">Language</a>
+										<ul class="sub-menu">
+										   <li class="menu-item"><a href="{% url 'movies:movie_language' 'english' %}">English</a></li>
+										   <li class="menu-item"><a href="{% url 'movies:movie_language' 'german' %}">German</a></li>
+										   <li class="menu-item"><a href="{% url 'movies:movie_language' 'korea' %}">Korea</a></li>
+										   <li class="menu-item"><a href="{% url 'movies:movie_language' 'japan' %}">Japan</a></li>
+										   <li class="menu-item"><a href="{% url 'movies:movie_language' 'china' %}">China</a></li>
+										</ul>
+									</li>
+								  </ul>
+								</div>
+							  </div>	
+							  <div class="mobile-more-menu">
+								<a href="javascript:void(0);" class="more-toggle" id="dropdownMenuButton" data-toggle="more-toggle"
+								  aria-haspopup="true" aria-expanded="false">
+								  <i class="fa fa-ellipsis-h"></i>
+								</a>
+								<div class="more-menu" aria-labelledby="dropdownMenuButton">
+								  <div class="navbar-right position-relative">
+									<ul class="d-flex align-items-center justify-content-end list-inline m-0">
+									  <li>
+										<a href="#" class="search-toggle">
+										  <i class="fa fa-search"></i>
+										</a>
+										<div class="search-box iq-search-bar">
+											<form action="{% url 'movies:movie_search' %}" class="searchbox" method="GET">
+											  <div class="form-group position-relative">
+												<input type="text" name="query" value="{{request.GET.q}}" class="text search-input font-size-12"
+												  placeholder="type here to search..." />
+												<i class="search-link fa fa-search"></i>
+											  </div>
+											</form>
+										  
+										  </div>
+									  </li>
+									  <li class="nav-item nav-icon">
+										<a href="#" class="iq-user-dropdown search-toggle d-flex align-items-center p-0">
+										  Login
+										</a>
+										
+									  </li>
+									</ul>
+								  </div>
+								</div>
+							  </div>
+							  <div class="navbar-right menu-right">
+								<ul class="d-flex align-items-center list-inline m-0">
+								  <li class="nav-item nav-icon">
+									<a href="#" class="search-toggle device-search">
+									  <i class="fa fa-search"></i>
+									</a>
+									<div class="search-box iq-search-bar d-search">
+									  <form action="{% url 'movies:movie_search' %}" class="searchbox">
+										<div class="form-group position-relative">
+										  <input type="text" class="text search-input font-size-12" name="query" value="{{request.GET.q}}" 
+											placeholder="type here to search..." />
+										  <i class="search-link fa fa-search"></i>
+										</div>
+									  </form>
+									</div>
+								  </li>
+								
+								  <li class="nav-item nav-icon">
+									<a href="#" class="iq-user-dropdown search-toggle d-flex align-items-center p-0">
+									  Login
+									</a>
+									
+								  </li>
+								</ul>
+							  </div>
+							</nav>
+							<div class="nav-overlay"></div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </header>
+				
+		
+		<!-- Slider -->
+		
+		<section id="home" class="iq-main-slider p-0">
+		  
+			<div id="home-slider" class="slider m-0 p-0">
+			 {% for movie in recently_added %} 
+				<div class="home-slider slick-bg">
+					{% if movie.banner %}
+							<video id="video_background" preload="auto" autoplay="true" loop="loop" muted volume="0">
+								<source  src="{{movie.banner.url}}">
+							</video>
+					{% endif %}
+					<div class="container-fluid position-relative h-100">
+					<div class="slider-inner h-100">						
+						<div class="row align-items-center h--100">
+						<div class="col-xl-6 col-lg-12 col-md-12">					
+							
+							
+							<h1 class="slider-text big-title title text-uppercase" data-animation-in="fadeInLeft"
+							data-delay-in="0.6">
+							{{movie.title}}
+							</h1>
+							
+							<div class="d-flex flex-wrap align-items-center fadeInLeft animated" data-animation-in="fadeInLeft"
+							style="opacity: 1">
+														
+							</div>
+							<p data-animation-in="fadeInUp">
+								{{movie.description}}
+							</p>
+							<div class="trending-list" data-animation-in="fadeInUp" data-delay-in="1.2">
+							<div class="text-primary title starring">
+								Cast :
+								<span class="text-body">{{movie.cast}}</span>
+							</div>
+							<div class="text-primary title genres">
+								Genres : <span class="text-body">{{movie.category}}</span>
+							</div>
+							<div class="text-primary title year">
+								Year of production :
+								<span class="text-body">{{movie.year_of_production}}</span>
+							</div>
+							</div>
+							<div class="d-flex align-items-center r-mb-23 mt-4" data-animation-in="fadeInUp" data-delay-in="1.2">
+							<a href="{% url 'movies:movie_detail' movie.slug %}" class="btn btn-hover iq-button"><i class="fa fa-play mr-3"></i>Play Now</a>
+							
+							</div>
+							
+						</div>
+						
+						</div>
+					
+					</div>
+					</div>
+					
+				</div>
+			  {% endfor %}
+			</div>
+		  
+		</section>
+		{% block body %}
+		  
+		{% endblock body %}	
+		
+        
+		<footer class="iq-bg-dark">
+			<div class="footer-top">
+			<div class="container-fluid">
+				<div class="row footer-standard">
+				<div class="col-lg-5">
+					<div class="widget text-left">
+					<div>
+						<ul class="menu p-0">
+						<li><a href="{% url 'movie:homepage'%}">Home</a></li>
+						<li><a href="#">Privacy-Policy</a></li>
+						<li><a href="#">FAQ</a></li>
+						<li><a href="#">Watch List</a></li>
+						</ul>
+					</div>
+					</div>
+					<div class="widget text-left">
+					<div class="textwidget">
+						<p><small>
+							<li>Watch Free Movies</li>
+							<li>English Subtitled Movies</li>
+							<li>Latest Movies Trailers</li>
+							<li>New Movies Trailers</li></small></p>
+					</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+					<h6 class="footer-link-title">
+					Follow Us:
+					</h6>
+					<ul class="info-share">
+					<li>
+						<a href="#">
+						<i>
+						<fa class="fa fa-facebook"></fa>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+						<i>
+						<fa class="fa fa-youtube"></fa>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+						<i>
+						<fa class="fa fa-instagram"></fa>
+						</a>
+					</li>
+					</ul>
+				</div>
+				
+				</div>
+			</div>
+			</div>
+		</footer>
+		
+	{% block content %}
+		
+	{% endblock content %}
+     
+	
+  	<!-- Link JS-->>
+	<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/slick.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/select2.min.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/slick-animation.min.js' %}"></script>
+	<script src="{% static 'js/hovervid.js' %}"></script>
+	<script src="{% static 'js/videoplayer.js' %}"></script>
+    <script src="{% static 'main.js' %}"></script>
+	
+	
+</body>
+</html>

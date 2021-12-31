@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="site-content">
+    <main class="main-content">
+        <div class="container">
+            <div class="page">
+                
+                <div class="filters">
+                    <select name="#" id="#" placeholder="Choose Category">
+                        <option value="#">
+                            {% if year %}
+                             <h3>Movies release in {{year|date:"Y"}} </h3>
+                            {% endif %}
+                            
+                            
+                        </option>
+                        
+                    </select>
+                   
+                </div>
+                <div class="movie-list ">
+                  {% for movie in object_list %}
+                    <div class="movie mydisabled">
+                        <figure class="movie-poster"><img src="{{movie.image.url}}" alt="#"></figure>
+                        
+                    </div>
+                    <div class="movie ">
+                        
+                        <div class="movie-title"><a href="{% url 'movies:movie_detail' movie.slug %}">{{movie.title}}</a></div>
+                        <p>{{movie.description}}</p>
+                    </div>
+                    {% empty %}
+                    <h3>There Are No Movies In This Category</h3></br>
+                  {% endfor %}
+                </div> <!-- .movie-list -->
+
+                <div class="pagination">
+                                       
+                            {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-number prev"><i class="fa fa-angle-left"></i>Prev</a></li>
+                            {% else %}
+                                <li class="disabled"></li>
+                            {% endif %}
+                            
+                            {% for pages in page_obj.paginator.page_range %}
+                              {% if page_obj.number == pages %}
+                                <li><a href="#" class="page-number">{{pages}}</a></li>
+                              {% else %}
+                                <li><a href="?page={{pages}}" class="page-number">{{pages}}</a></li>
+                              {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                                <li><a href="?page={{ page_obj.next_page_number }}" class="page-number next"><i class="fa fa-angle-right" ></i>Next</a></li>
+                            {% else %}
+                                <li class="disabled"></li>
+                            {% endif %}
+                </div>
+            </div>
+        </div> <!-- .container -->
+    </main>
+			
+ </div>
+{% endblock body %}
